@@ -71,7 +71,7 @@ public class GameManagerDino : MonoBehaviour
     private void Update()
     {
         gameSpeed += gameSpeedIncrease * Time.deltaTime;
-        score += gameSpeed * Time.deltaTime;
+        score += gameSpeed * Time.deltaTime * ScoreMultiplier.Ins.xScore;
         scoreText.text = Mathf.FloorToInt(score).ToString("D5");
     }
 

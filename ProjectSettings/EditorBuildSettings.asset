@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DinoGame/Scenes/DinoGame.unity
     guid: 5e767d00a61ef584ab688ff055864db1
-  - enabled: 1
-    path: Assets/FlappyBird/Scenes/FlappyBird.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

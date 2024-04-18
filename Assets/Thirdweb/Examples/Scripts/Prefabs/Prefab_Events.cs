@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Nethereum.ABI.FunctionEncoding.Attributes;
 using System.Numerics;
-using Newtonsoft.Json;
 
 namespace Thirdweb.Examples
 {
@@ -47,15 +46,15 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Contract contract = ThirdwebManager.Instance.SDK.GetContract("0x2e01763fA0e15e07294D74B63cE4b526B321E389");
+                Contract contract = ThirdwebManager.Instance.SDK.GetContract("0x345E7B4CCA26725197f1Bed802A05691D8EF7770");
 
                 if (Utils.IsWebGLBuild())
                 {
                     // Optional event query options
-                    Dictionary<string, object> filters = new Dictionary<string, object> { { "tokenId", 20 } };
+                    Dictionary<string, object> filters = new Dictionary<string, object> { { "tokenId", 0 } };
                     EventQueryOptions options = new EventQueryOptions(filters);
 
-                    List<ContractEvent<TransferEvent>> allEvents = await contract.events.Get<TransferEvent>("Transfer", options);
+                    List<ContractEvent<TransferEvent>> allEvents = await contract.Events.Get<TransferEvent>("Transfer", options);
                     Debugger.Instance.Log("[Get Events] Get - TransferEvent #1", allEvents[0].ToString());
                 }
                 else
@@ -80,12 +79,12 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Contract contract = ThirdwebManager.Instance.SDK.GetContract("0x2e01763fA0e15e07294D74B63cE4b526B321E389");
+                Contract contract = ThirdwebManager.Instance.SDK.GetContract("0x345E7B4CCA26725197f1Bed802A05691D8EF7770");
 
                 // Optional event query options
                 EventQueryOptions options = new EventQueryOptions(null, 0, 16500000, "desc");
 
-                List<ContractEvent<object>> allContractEvents = await contract.events.GetAll(options);
+                List<ContractEvent<object>> allContractEvents = await contract.Events.GetAll(options);
                 Debugger.Instance.Log("[Get All Events] Get - ContractEvent #1", allContractEvents[0].ToString());
             }
             catch (System.Exception e)
@@ -100,8 +99,8 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Contract contract = ThirdwebManager.Instance.SDK.GetContract("0x2e01763fA0e15e07294D74B63cE4b526B321E389");
-                contract.events.ListenToAll((ContractEvent<object> anyEvent) => OnEventTriggered(anyEvent));
+                Contract contract = ThirdwebManager.Instance.SDK.GetContract("0x345E7B4CCA26725197f1Bed802A05691D8EF7770");
+                contract.Events.ListenToAll((ContractEvent<object> anyEvent) => OnEventTriggered(anyEvent));
                 Debugger.Instance.Log("Listening to all events!", "Try to trigger an event on the specified contract to get a callback.");
             }
             catch (System.Exception e)
@@ -114,8 +113,8 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Contract contract = ThirdwebManager.Instance.SDK.GetContract("0x2e01763fA0e15e07294D74B63cE4b526B321E389");
-                await contract.events.RemoveAllListeners();
+                Contract contract = ThirdwebManager.Instance.SDK.GetContract("0x345E7B4CCA26725197f1Bed802A05691D8EF7770");
+                await contract.Events.RemoveAllListeners();
                 Debugger.Instance.Log("Removed all event listeners!", "Events emitted will not trigger callbacks anymore.");
             }
             catch (System.Exception e)

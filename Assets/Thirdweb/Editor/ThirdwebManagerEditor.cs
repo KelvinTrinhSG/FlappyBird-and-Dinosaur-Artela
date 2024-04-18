@@ -24,15 +24,22 @@ namespace Thirdweb
         private SerializedProperty forwarderDomainOverrideProperty;
         private SerializedProperty forwaderVersionOverrideProperty;
         private SerializedProperty walletConnectProjectIdProperty;
+        private SerializedProperty walletConnectEnableExplorerProperty;
         private SerializedProperty walletConnectExplorerRecommendedWalletIdsProperty;
+        private SerializedProperty walletConnectWalletImagesProperty;
+        private SerializedProperty walletConnectDesktopWalletsProperty;
+        private SerializedProperty walletConnectMobileWalletsProperty;
+        private SerializedProperty walletConnectThemeModeProperty;
         private SerializedProperty factoryAddressProperty;
         private SerializedProperty gaslessProperty;
+        private SerializedProperty erc20PaymasterAddressProperty;
+        private SerializedProperty erc20TokenAddressProperty;
         private SerializedProperty bundlerUrlProperty;
         private SerializedProperty paymasterUrlProperty;
         private SerializedProperty entryPointAddressProperty;
         private SerializedProperty WalletConnectPrefabProperty;
         private SerializedProperty MetamaskPrefabProperty;
-        private SerializedProperty EmbeddedWalletPrefabProperty;
+        private SerializedProperty InAppWalletPrefabProperty;
 
         private ReorderableList supportedChainsList;
         private bool[] sectionExpanded;
@@ -43,7 +50,8 @@ namespace Thirdweb
         private GUIContent warningIcon;
         private Texture2D bannerImage;
 
-        private static readonly string ExpandedStateKey = "ThirdwebManagerEditor_ExpandedState_4.2.2";
+        private static readonly string ExpandedStateKey = "ThirdwebManagerEditor_ExpandedState_4.12.0";
+        private static readonly string OptionalStateKey = "ThirdwebManagerEditor_OptionalState_4.12.0";
 
         private void OnEnable()
         {
@@ -64,15 +72,22 @@ namespace Thirdweb
             forwarderDomainOverrideProperty = serializedObject.FindProperty("forwarderDomainOverride");
             forwaderVersionOverrideProperty = serializedObject.FindProperty("forwaderVersionOverride");
             walletConnectProjectIdProperty = serializedObject.FindProperty("walletConnectProjectId");
+            walletConnectEnableExplorerProperty = serializedObject.FindProperty("walletConnectEnableExplorer");
             walletConnectExplorerRecommendedWalletIdsProperty = serializedObject.FindProperty("walletConnectExplorerRecommendedWalletIds");
+            walletConnectWalletImagesProperty = serializedObject.FindProperty("walletConnectWalletImages");
+            walletConnectDesktopWalletsProperty = serializedObject.FindProperty("walletConnectDesktopWallets");
+            walletConnectMobileWalletsProperty = serializedObject.FindProperty("walletConnectMobileWallets");
+            walletConnectThemeModeProperty = serializedObject.FindProperty("walletConnectThemeMode");
             factoryAddressProperty = serializedObject.FindProperty("factoryAddress");
             gaslessProperty = serializedObject.FindProperty("gasless");
+            erc20PaymasterAddressProperty = serializedObject.FindProperty("erc20PaymasterAddress");
+            erc20TokenAddressProperty = serializedObject.FindProperty("erc20TokenAddress");
             bundlerUrlProperty = serializedObject.FindProperty("bundlerUrl");
             paymasterUrlProperty = serializedObject.FindProperty("paymasterUrl");
             entryPointAddressProperty = serializedObject.FindProperty("entryPointAddress");
             WalletConnectPrefabProperty = serializedObject.FindProperty("WalletConnectPrefab");
             MetamaskPrefabProperty = serializedObject.FindProperty("MetamaskPrefab");
-            EmbeddedWalletPrefabProperty = serializedObject.FindProperty("EmbeddedWalletPrefab");
+            InAppWalletPrefabProperty = serializedObject.FindProperty("InAppWalletPrefab");
 
             supportedChainsList = new ReorderableList(serializedObject, supportedChainsProperty, true, true, true, true);
             supportedChainsList.drawHeaderCallback = rect =>
@@ -121,11 +136,16 @@ namespace Thirdweb
             bannerImage = Resources.Load<Texture2D>("EditorBanner");
 
             sectionExpanded = GetExpandedState();
+
+            showGaslessOptionalFields = EditorPrefs.GetBool($"{OptionalStateKey}_showGaslessOptionalFields", false);
+            showSmartWalletOptionalFields = EditorPrefs.GetBool($"{OptionalStateKey}_showSmartWalletOptionalFields", false);
         }
 
         private void OnDisable()
         {
             SetExpandedState(sectionExpanded);
+            EditorPrefs.SetBool($"{OptionalStateKey}_showGaslessOptionalFields", showGaslessOptionalFields);
+            EditorPrefs.SetBool($"{OptionalStateKey}_showSmartWalletOptionalFields", showSmartWalletOptionalFields);
         }
 
         public override void OnInspectorGUI()
@@ -243,13 +263,12 @@ namespace Thirdweb
 
             // OZ Defender Options
             sectionExpanded[3] = DrawSectionWithExpand(
-                "OpenZeppelin Defender Options",
+                "Gasless Relayer Options",
                 sectionExpanded[3],
                 () =>
                 {
                     EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                     EditorGUILayout.PropertyField(relayerUrlProperty);
-                    EditorGUILayout.PropertyField(forwarderAddressProperty);
 
                     EditorGUI.BeginChangeCheck();
                     showGaslessOptionalFields = EditorGUILayout.ToggleLeft("Show Optional Fields", showGaslessOptionalFields);
@@ -260,6 +279,7 @@ namespace Thirdweb
 
                     if (showGaslessOptionalFields)
                     {
+                        EditorGUILayout.PropertyField(forwarderAddressProperty);
                         EditorGUILayout.PropertyField(forwarderDomainOverrideProperty);
                         EditorGUILayout.PropertyField(forwaderVersionOverrideProperty);
                     }
@@ -278,7 +298,12 @@ namespace Thirdweb
                 {
                     EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                     EditorGUILayout.PropertyField(walletConnectProjectIdProperty);
+                    EditorGUILayout.PropertyField(walletConnectEnableExplorerProperty);
                     EditorGUILayout.PropertyField(walletConnectExplorerRecommendedWalletIdsProperty);
+                    EditorGUILayout.PropertyField(walletConnectWalletImagesProperty, true);
+                    EditorGUILayout.PropertyField(walletConnectDesktopWalletsProperty, true);
+                    EditorGUILayout.PropertyField(walletConnectMobileWalletsProperty, true);
+                    EditorGUILayout.PropertyField(walletConnectThemeModeProperty);
                     EditorGUILayout.EndVertical();
                 }
             );
@@ -304,6 +329,8 @@ namespace Thirdweb
 
                     if (showSmartWalletOptionalFields)
                     {
+                        EditorGUILayout.PropertyField(erc20PaymasterAddressProperty);
+                        EditorGUILayout.PropertyField(erc20TokenAddressProperty);
                         EditorGUILayout.PropertyField(bundlerUrlProperty);
                         EditorGUILayout.PropertyField(paymasterUrlProperty);
                         EditorGUILayout.PropertyField(entryPointAddressProperty);
@@ -347,7 +374,7 @@ namespace Thirdweb
                     {
                         EditorGUILayout.PropertyField(WalletConnectPrefabProperty);
                         EditorGUILayout.PropertyField(MetamaskPrefabProperty);
-                        EditorGUILayout.PropertyField(EmbeddedWalletPrefabProperty);
+                        EditorGUILayout.PropertyField(InAppWalletPrefabProperty);
                     }
 
                     EditorGUILayout.EndVertical();

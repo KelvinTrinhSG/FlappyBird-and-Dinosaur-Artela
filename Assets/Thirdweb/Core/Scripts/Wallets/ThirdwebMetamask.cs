@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Threading.Tasks;
+using MetaMask;
 using MetaMask.NEthereum;
 using MetaMask.Unity;
 using Nethereum.Web3;
@@ -11,6 +12,24 @@ namespace Thirdweb.Wallets
 {
     public class ThirdwebMetamask : IThirdwebWallet
     {
+        public class MetaMaskThirdwebConfig : MetaMaskConfig
+        {
+            public void SetDefaults(MetaMaskConfig defaults)
+            {
+                this.encrypt = defaults.Encrypt;
+                this.log = defaults.Log;
+                this.encryptionPassword = defaults.EncryptionPassword;
+                this.userAgent = defaults.UserAgent;
+                this.socketUrl = defaults.SocketUrl;
+            }
+
+            public void UpdateConfig(string appName, string appUrl)
+            {
+                this.appName = appName;
+                this.appUrl = appUrl;
+            }
+        }
+
         private Web3 _web3;
         private readonly WalletProvider _provider;
         private readonly WalletProvider _signerProvider;
@@ -28,15 +47,30 @@ namespace Thirdweb.Wallets
             {
                 GameObject.Instantiate(ThirdwebManager.Instance.MetamaskPrefab);
                 await new WaitForSeconds(1f);
+                SetupMetaMask();
             }
             await MetamaskUI.Instance.Connect();
             _web3 = MetaMaskUnity.Instance.CreateWeb3();
             return await GetAddress();
         }
 
-        public Task Disconnect()
+        private void SetupMetaMask()
         {
-            MetaMaskUnity.Instance.Disconnect(true);
+            var config = ScriptableObject.CreateInstance<MetaMaskThirdwebConfig>();
+            var defaults = MetaMaskConfig.DefaultInstance;
+
+            config.SetDefaults(defaults);
+
+            var appName = ThirdwebManager.Instance.SDK.Session.Options.wallet?.appName;
+            var appUrl = ThirdwebManager.Instance.SDK.Session.Options.wallet?.appUrl;
+            config.UpdateConfig(appName, appUrl);
+
+            MetaMaskUnity.Instance.Initialize(config);
+        }
+
+        public Task Disconnect(bool endSession = true)
+        {
+            MetaMaskUnity.Instance.Disconnect(endSession);
             _web3 = null;
             return Task.CompletedTask;
         }
