@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public GameObject dinoGameButton;
+    private void Start()
+    {
+        dinoGameButton.SetActive(false);
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
@@ -13,5 +18,6 @@ public class MainMenuManager : MonoBehaviour
     public void OnWalletConnected()
     {
         ScoreMultiplier.Ins.xScore = 5;
+        dinoGameButton.SetActive(true);
     }
 }

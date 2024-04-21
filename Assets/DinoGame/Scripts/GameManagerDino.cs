@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Thirdweb;
 
 public class GameManagerDino : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class GameManagerDino : MonoBehaviour
     private PlayerDino player;
     private SpawnerDino spawner;
     private float score;
+
+    public GameObject ERC20TokenBalanceText;
+    private string tokenContractAddress = "0xC470891Ea7fA2FdA355F4cdAe074f9134ebEFF72";
+    private ThirdwebSDK sdk;
+    public GameObject claimingStatusTxt;
+    public GameObject claimTokenBtn;
+    public GameObject tokenClaimingPanel;
 
     private void Awake()
     {
@@ -41,9 +49,36 @@ public class GameManagerDino : MonoBehaviour
         player = FindObjectOfType<PlayerDino>();
         spawner = FindObjectOfType<SpawnerDino>();
         NewGame();
+        sdk = ThirdwebManager.Instance.SDK;
+        GetTokenBalance();
+        claimingStatusTxt.SetActive(false);
+        claimTokenBtn.SetActive(true);
+        tokenClaimingPanel.SetActive(false);
+
+    }
+
+    public async void GetTokenBalance()
+    {
+        string address = await sdk.Wallet.GetAddress();
+        Contract contract = sdk.GetContract(tokenContractAddress);
+        var data = await contract.ERC20.BalanceOf(address);
+        ERC20TokenBalanceText.GetComponent<TMPro.TextMeshProUGUI>().text = data.displayValue;
+        claimingStatusTxt.SetActive(false);
+        retryButton.gameObject.SetActive(true);
+    }
+
+    public async void ClaimERC20Token() {
+        claimingStatusTxt.SetActive(true);
+        claimTokenBtn.SetActive(false);
+        retryButton.gameObject.SetActive(false);
+        Contract contract = sdk.GetContract(tokenContractAddress);
+        var data = await contract.ERC20.Claim("10");
+        Debug.Log("Tokens were claimed!");
+        GetTokenBalance();
     }
     public void NewGame()
     {
+        tokenClaimingPanel.SetActive(false);
         Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
         foreach (var obstacle in obstacles)
         {
@@ -60,6 +95,9 @@ public class GameManagerDino : MonoBehaviour
     }
     public void GameOver()
     {
+        if (score >= 1000f) {
+            tokenClaimingPanel.SetActive(true);
+        }
         gameSpeed = 0f;
         enabled = false;
         player.gameObject.SetActive(false);

@@ -260,7 +260,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4404896360829706404, guid: 379ed01658d62a14484f953196ff19db, type: 3}
       propertyPath: activeChain
-      value: RTF Network
+      value: Taraxa Testnet
       objectReference: {fileID: 0}
     - target: {fileID: 4404896360829706404, guid: 379ed01658d62a14484f953196ff19db, type: 3}
       propertyPath: supportedChains.Array.size
@@ -268,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4404896360829706404, guid: 379ed01658d62a14484f953196ff19db, type: 3}
       propertyPath: supportedChains.Array.data[0].chainId
-      value: 22999
+      value: 842
       objectReference: {fileID: 0}
     - target: {fileID: 4404896360829706404, guid: 379ed01658d62a14484f953196ff19db, type: 3}
       propertyPath: supportedChains.Array.data[1].chainId
@@ -312,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4404896360829706404, guid: 379ed01658d62a14484f953196ff19db, type: 3}
       propertyPath: supportedChains.Array.data[0].identifier
-      value: RTF Network
+      value: Taraxa Testnet
       objectReference: {fileID: 0}
     - target: {fileID: 4404896360829706404, guid: 379ed01658d62a14484f953196ff19db, type: 3}
       propertyPath: supportedChains.Array.data[1].identifier
@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4404896360829706404, guid: 379ed01658d62a14484f953196ff19db, type: 3}
       propertyPath: supportedChains.Array.data[0].rpcOverride
-      value: https://rpc-testnet.rtfight.com
+      value: https://rpc.testnet.taraxa.io/
       objectReference: {fileID: 0}
     - target: {fileID: 4404896360829706404, guid: 379ed01658d62a14484f953196ff19db, type: 3}
       propertyPath: supportedChains.Array.data[10].identifier
@@ -437,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45171623c4976694a849d2ee9bb09dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dinoGameButton: {fileID: 1049132524}
 --- !u!4 &441563793
 Transform:
   m_ObjectHideFlags: 0
@@ -484,10 +485,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1577041051}
+  - {fileID: 1554946645}
   - {fileID: 1049132525}
   - {fileID: 2136874036}
   - {fileID: 1589908278}
-  - {fileID: 1554946645}
   m_Father: {fileID: 1205193838}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -620,7 +621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1049132525
 RectTransform:
   m_ObjectHideFlags: 0
@@ -635,7 +636,7 @@ RectTransform:
   m_Children:
   - {fileID: 1503642605}
   m_Father: {fileID: 744979010}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -711,7 +712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.86274517, b: 0.16078432, a: 1}
+  m_Color: {r: 0.09411765, g: 0.99215686, b: 0.40784314, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1000,12 +1001,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 744979010}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554946646
 MonoBehaviour:
@@ -1020,7 +1021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.86274517, b: 0.16078432, a: 1}
+  m_Color: {r: 0.09411766, g: 0.9921569, b: 0.40784317, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1033,14 +1034,14 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 100
+    m_MaxSize: 150
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: Botanix Labs
+  m_Text: Taraxa
 --- !u!222 &1554946647
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1084,8 +1085,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.6199951, y: -0.47000122}
-  m_SizeDelta: {x: 305.32, y: 228.99}
+  m_AnchoredPosition: {x: -355, y: -47}
+  m_SizeDelta: {x: 972.08, y: 729.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1577041052
 MonoBehaviour:
@@ -1107,7 +1108,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4008d432d5133c149a3f12066a4790ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bce704426a88d7f479927c140cfb5a40, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1354,7 +1355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3884746220347834094, guid: 897cda79fe3077c4fbc0fb5916d433ee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4058948768396084059, guid: 897cda79fe3077c4fbc0fb5916d433ee, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1618,7 +1619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908980068005564339, guid: 897cda79fe3077c4fbc0fb5916d433ee, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7908980068005564339, guid: 897cda79fe3077c4fbc0fb5916d433ee, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1754,11 +1755,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9050576558914966330, guid: 897cda79fe3077c4fbc0fb5916d433ee, type: 3}
       propertyPath: m_Color.b
-      value: 0.16078432
+      value: 0.40784314
       objectReference: {fileID: 0}
     - target: {fileID: 9050576558914966330, guid: 897cda79fe3077c4fbc0fb5916d433ee, type: 3}
       propertyPath: m_Color.g
-      value: 0.86274517
+      value: 0.99215686
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050576558914966330, guid: 897cda79fe3077c4fbc0fb5916d433ee, type: 3}
+      propertyPath: m_Color.r
+      value: 0.09411765
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 897cda79fe3077c4fbc0fb5916d433ee, type: 3}
@@ -1784,7 +1789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2136874036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1798,7 +1803,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 744979010}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1818,7 +1823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.86274517, b: 0.16078432, a: 1}
+  m_Color: {r: 0.09411765, g: 0.99215686, b: 0.40784314, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1838,7 +1843,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Connect to RTF Testnet
+  m_Text: 'Connect to Taraxa Testnet
 
     x5 Score'
 --- !u!222 &2136874038
