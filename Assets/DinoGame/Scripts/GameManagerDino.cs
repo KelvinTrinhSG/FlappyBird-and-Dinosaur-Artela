@@ -20,11 +20,13 @@ public class GameManagerDino : MonoBehaviour
     private float score;
 
     public GameObject ERC20TokenBalanceText;
-    private string tokenContractAddress = "0xC470891Ea7fA2FdA355F4cdAe074f9134ebEFF72";
+    private string tokenContractAddress = "0x9f87A223c1A2C37e15A72e4F61937eAF616A1ea7";
     private ThirdwebSDK sdk;
     public GameObject claimingStatusTxt;
     public GameObject claimTokenBtn;
     public GameObject tokenClaimingPanel;
+
+    private bool enabledRetry;
 
     private void Awake()
     {
@@ -54,7 +56,7 @@ public class GameManagerDino : MonoBehaviour
         claimingStatusTxt.SetActive(false);
         claimTokenBtn.SetActive(true);
         tokenClaimingPanel.SetActive(false);
-
+        retryButton.gameObject.SetActive(false);
     }
 
     public async void GetTokenBalance()
@@ -86,7 +88,7 @@ public class GameManagerDino : MonoBehaviour
         }
         score = 0f;
         gameSpeed = initialGameSpeed;
-        enabled = true;
+        enabledRetry = true;
         player.gameObject.SetActive(true);
         spawner.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(false);
@@ -99,7 +101,7 @@ public class GameManagerDino : MonoBehaviour
             tokenClaimingPanel.SetActive(true);
         }
         gameSpeed = 0f;
-        enabled = false;
+        enabledRetry = false;
         player.gameObject.SetActive(false);
         spawner.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(true);
@@ -108,6 +110,9 @@ public class GameManagerDino : MonoBehaviour
     }
     private void Update()
     {
+        if (enabledRetry == true) {
+            retryButton.gameObject.SetActive(false);
+        }
         gameSpeed += gameSpeedIncrease * Time.deltaTime;
         score += gameSpeed * Time.deltaTime * ScoreMultiplier.Ins.xScore;
         scoreText.text = Mathf.FloorToInt(score).ToString("D5");

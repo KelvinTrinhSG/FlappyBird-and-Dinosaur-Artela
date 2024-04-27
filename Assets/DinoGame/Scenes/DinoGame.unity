@@ -470,7 +470,6 @@ MonoBehaviour:
   claimingStatusTxt: {fileID: 769550314}
   claimTokenBtn: {fileID: 2142155202}
   tokenClaimingPanel: {fileID: 658916961}
-  retryBtn: {fileID: 1035236578}
 --- !u!4 &634112620
 Transform:
   m_ObjectHideFlags: 0
@@ -502,7 +501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &658916962
 RectTransform:
   m_ObjectHideFlags: 0
@@ -602,8 +601,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282685952
-  m_fontColor: {r: 0, g: 0.6037736, b: 0.26514924, a: 1}
+    rgba: 4278215344
+  m_fontColor: {r: 0.6901961, g: 0.38431373, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1007,8 +1006,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281958912
-  m_fontColor: {r: 0, g: 0.509434, b: 0.22371969, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1154,7 +1153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1035236579
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1634,7 +1633,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a4d2b90558b4f0849a2c8ca912c2f6dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73a8b092cd341a74baa39f02049185cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1673,8 +1672,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: a4d2b90558b4f0849a2c8ca912c2f6dd, type: 3}
-  - {fileID: 21300000, guid: a4d2b90558b4f0849a2c8ca912c2f6dd, type: 3}
+  - {fileID: 21300000, guid: 73a8b092cd341a74baa39f02049185cf, type: 3}
+  - {fileID: 21300000, guid: 73a8b092cd341a74baa39f02049185cf, type: 3}
 --- !u!1 &1519276310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,7 +2202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.121568635, g: 0.8941177, b: 0.46274513, a: 1}
+  m_Color: {r: 0.6886792, g: 0.38506794, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
