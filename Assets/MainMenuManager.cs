@@ -17,7 +17,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnWalletConnected()
     {
-        ScoreMultiplier.Ins.xScore = 5;
+        ScoreMultiplier.Ins.xScore = 2;
         dinoGameButton.SetActive(true);
     }
 }
